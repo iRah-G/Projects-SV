@@ -1,0 +1,55 @@
+xrun: 22.03-s012: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
+TOOL:	xrun	22.03-s012: Started on Oct 22, 2025 at 18:53:27 CDT
+xrun
+	-f run.f
+		+access+rwc
+		-timescale 1ns/1ns
+		top.sv
+		tb.sv
+file: top.sv
+     if (!full) begin
+      |
+xmvlog: *E,EXPSMC (top.sv,38|6): expecting a semicolon (';') [3.10(IEEE)].
+     else begin
+        |
+xmvlog: *E,MISMUL (top.sv,44|8): Missing "begin" in [SystemVerilog] task/function.
+     if(!empty) begin
+      |
+xmvlog: *E,EXPKWS (top.sv,50|6): Expecting port direction keyword 'input', 'output', 'inout', or 'ref'.
+          rd_ptr = rd_ptr + 1;// increment read pointer
+                             |
+xmvlog: *E,EXPCORP (top.sv,52|29): Expecting a ',' or ')' [A.1.4(IEEE-2001)].
+          count = count - 1; //decrement element counter
+              |
+xmvlog: *E,EXPRPA (top.sv,53|14): expecting a right parenthesis (')') [A.2.6(IEEE)].
+     else begin 
+        |
+xmvlog: *E,MISMUL (top.sv,56|8): Missing "begin" in [SystemVerilog] task/function.
+	module worklib.top:sv
+		errors: 6, warnings: 0
+file: tb.sv
+ always #5 clk = ~clk; //toggle clock every 5ns hence period is 10ns
+      |
+xmvlog: *E,NOTSTT (tb.sv,17|6): expecting a statement [9(IEEE)].
+    rst = 1;
+        |
+xmvlog: *E,EXPLPA (tb.sv,20|8): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
+    wr_en = 0;
+          |
+xmvlog: *E,EXPLPA (tb.sv,21|10): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
+    rd_en = 0;
+          |
+xmvlog: *E,EXPLPA (tb.sv,22|10): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
+    data_in = 0;
+            |
+xmvlog: *E,EXPLPA (tb.sv,23|12): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
+    #10;// holds reset for 2 clk cycles
+    |
+xmvlog: *E,EXPENM (tb.sv,24|4): expecting the keyword 'endmodule' [12.1(IEEE)].
+	module worklib.tb_fifo_basic:sv
+		errors: 6, warnings: 0
+xmvlog: *W,NOTOPL: no top-level unit found, must have recursive instances.
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 1
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun	22.03-s012: Exiting on Oct 22, 2025 at 18:53:29 CDT  (total: 00:00:02)
