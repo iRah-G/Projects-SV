@@ -11,11 +11,11 @@ logic full, empty;
 
 //Instantiate the FIFO
 top dut(.*);
+always #5 clk = ~clk;
 
 initial begin
- clk = 0;
- always #5 clk = ~clk; //toggle clock every 5ns hence period is 10ns
-
+  //toggle clock every 5ns hence period is 10ns
+    clk = 0;
  //initialize
     rst = 1;
     wr_en = 0;
@@ -40,8 +40,8 @@ initial begin
         #10; //wait 1 clock cycle
     end
     rd_en = 0;
-    200;
-    $finish //ending simulation after 200ns
+    #200;
+    $finish; //ending simulation after 200ns
 
 end 
 

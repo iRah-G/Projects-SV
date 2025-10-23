@@ -34,7 +34,7 @@ always_ff @( posedge clk or posedge rst ) begin
 end
 
 //automatic keyword creates local variable copies, makes the task dynamic avoids overwriting and race around conditions
-    task automatic wr_mem( input logic [31:0] din)  //din is the argument to task in order to make it reusable instead of directly writing to data_in
+    task automatic wr_mem( input logic [31:0] din);  //din is the argument to task in order to make it reusable instead of directly writing to data_in
      if (!full) begin
           mem [wr_ptr] = din; //write data to mem
           wr_ptr = wr_ptr + 1; //increment pointer
@@ -46,7 +46,7 @@ end
      end
     endtask
 
-    task automatic rd_mem( )
+    task automatic rd_mem( );
      if(!empty) begin
           data_out = mem[rd_ptr]; //read data from memory
           rd_ptr = rd_ptr + 1;// increment read pointer

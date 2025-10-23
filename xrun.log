@@ -1,55 +1,54 @@
 xrun: 22.03-s012: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
-TOOL:	xrun	22.03-s012: Started on Oct 22, 2025 at 18:53:27 CDT
+TOOL:	xrun	22.03-s012: Started on Oct 22, 2025 at 19:06:07 CDT
 xrun
 	-f run.f
 		+access+rwc
 		-timescale 1ns/1ns
 		top.sv
 		tb.sv
-file: top.sv
-     if (!full) begin
-      |
-xmvlog: *E,EXPSMC (top.sv,38|6): expecting a semicolon (';') [3.10(IEEE)].
-     else begin
-        |
-xmvlog: *E,MISMUL (top.sv,44|8): Missing "begin" in [SystemVerilog] task/function.
-     if(!empty) begin
-      |
-xmvlog: *E,EXPKWS (top.sv,50|6): Expecting port direction keyword 'input', 'output', 'inout', or 'ref'.
-          rd_ptr = rd_ptr + 1;// increment read pointer
-                             |
-xmvlog: *E,EXPCORP (top.sv,52|29): Expecting a ',' or ')' [A.1.4(IEEE-2001)].
-          count = count - 1; //decrement element counter
-              |
-xmvlog: *E,EXPRPA (top.sv,53|14): expecting a right parenthesis (')') [A.2.6(IEEE)].
-     else begin 
-        |
-xmvlog: *E,MISMUL (top.sv,56|8): Missing "begin" in [SystemVerilog] task/function.
-	module worklib.top:sv
-		errors: 6, warnings: 0
 file: tb.sv
- always #5 clk = ~clk; //toggle clock every 5ns hence period is 10ns
-      |
-xmvlog: *E,NOTSTT (tb.sv,17|6): expecting a statement [9(IEEE)].
-    rst = 1;
-        |
-xmvlog: *E,EXPLPA (tb.sv,20|8): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
-    wr_en = 0;
-          |
-xmvlog: *E,EXPLPA (tb.sv,21|10): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
-    rd_en = 0;
-          |
-xmvlog: *E,EXPLPA (tb.sv,22|10): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
-    data_in = 0;
-            |
-xmvlog: *E,EXPLPA (tb.sv,23|12): expecting a left parenthesis ('(') [12.1.2][7.1(IEEE)].
-    #10;// holds reset for 2 clk cycles
-    |
-xmvlog: *E,EXPENM (tb.sv,24|4): expecting the keyword 'endmodule' [12.1(IEEE)].
 	module worklib.tb_fifo_basic:sv
-		errors: 6, warnings: 0
-xmvlog: *W,NOTOPL: no top-level unit found, must have recursive instances.
-	Total errors/warnings found outside modules and primitives:
-		errors: 0, warnings: 1
-xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
-TOOL:	xrun	22.03-s012: Exiting on Oct 22, 2025 at 18:53:29 CDT  (total: 00:00:02)
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		tb_fifo_basic
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.top:sv <0x40eec151>
+			streams:   5, words:  4145
+		worklib.tb_fifo_basic:sv <0x13785e35>
+			streams:  10, words:  4781
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 2       2
+		Registers:              16      16
+		Scalar wires:           10       -
+		Vectored wires:          3       -
+		Always blocks:           2       2
+		Initial blocks:          1       1
+		Cont. assignments:       1       2
+		Pseudo assignments:      8       8
+		Simulation timescale:  1ns
+	Writing initial simulation snapshot: worklib.tb_fifo_basic:sv
+Loading snapshot worklib.tb_fifo_basic:sv .................... Done
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /opt/coe/cadence/XCELIUM/tools/xcelium/files/xmsimrc
+xcelium> run
+Data written at address 1: 12153524
+Data written at address 2: c0895e81
+Data written at address 3: 8484d609
+Data written at address 4: b1f05663
+Data written at address 5: 6b97b0d
+Data read from address 1 : 12153524
+Data read from address 2 : c0895e81
+Data read from address 3 : 8484d609
+Data read from address 4 : b1f05663
+Data read from address 5 : 6b97b0d
+Simulation complete via $finish(1) at time 405 NS + 0
+./tb.sv:44     $finish; //ending simulation after 200ns
+xcelium> exit
+TOOL:	xrun	22.03-s012: Exiting on Oct 22, 2025 at 19:06:10 CDT  (total: 00:00:03)
